@@ -1,0 +1,8 @@
+{
+    "Environment": "dev",
+    "Owner": "jpagano@apexsystems.com",
+    "Cost center": "AICA00100",
+    "Application": "ai capability",
+    "Role": "@variables.tags.service"
+
+}

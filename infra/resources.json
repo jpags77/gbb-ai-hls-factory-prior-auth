@@ -29,6 +29,10 @@
     "tags": {
       "type": "object",
       "defaultValue": {},
+      "owner": "jpagano@apexsystems.com",
+      "cost center": "AICA00100",
+      "application": "ai capability",
+      "role": {},
       "metadata": {
         "description": "Set of tags to apply to all resources."
       }
