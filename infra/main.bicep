@@ -80,15 +80,15 @@ var azd_tags = union(tags,{
 
 
 // Organize resources in a resource group
-resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: 'rg-${priorAuthName}-${location}-${environmentName}'
-  location: location
-  tags: azd_tags
-}
+//resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+//  name: 'rg-${priorAuthName}-${location}-${environmentName}'
+// location: location
+//  tags: azd_tags
+//}
 
 
 module resources 'resources.bicep' = {
-  scope: rg
+  scope: resourceGroup()
   name: 'resources'
   params: {
     // Required Parameters
