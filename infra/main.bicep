@@ -1,10 +1,9 @@
-targetScope = 'subscription'
+targetScope = 'resourceGroup'
 
 @minLength(1)
 @maxLength(64)
 @description('Name of the environment that can be used as part of naming resource convention')
 param environmentName string
-
 @minLength(1)
 @description('Primary location for all resources. Not all regions are supported due to OpenAI limitations')
 @allowed([
@@ -47,8 +46,8 @@ param openAiApiVersion string = '2024-08-01-preview'
 @description('List of completion models to be deployed to the OpenAI account.')
 param chatCompletionModels array = [
   {
-    name: 'o1'
-    version: '2024-12-17'
+    name: '4o-mini'
+    version: '2024-07-18'
     skuName: 'Standard'
     capacity: 100
   }
@@ -80,15 +79,14 @@ var azd_tags = union(tags,{
 
 
 // Organize resources in a resource group
-resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: 'rg-${priorAuthName}-${location}-${environmentName}'
-  location: location
-  tags: azd_tags
-}
 
+//resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+//name: 'rg-${priorAuthName}-${location}-${environmentName}'
+//location: location
+//tags: azd_tags
+//}
 
 module resources 'resources.bicep' = {
-  scope: rg
   name: 'resources'
   params: {
     // Required Parameters
@@ -110,7 +108,7 @@ module resources 'resources.bicep' = {
 //  the environment variables within azd post provisioning
 // ----------------------------------------------------------------------------------------
 @description('Name of the resource group')
-output RESOURCE_GROUP_NAME string = rg.name
+output RESOURCE_GROUP_NAME string = resourceGroup().name
 
 @description('Name of the container job')
 output CONTAINER_JOB_NAME string = resources.outputs.CONTAINER_JOB_NAME

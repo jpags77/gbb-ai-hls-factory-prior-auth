@@ -41,8 +41,8 @@ param openAiApiVersion string = '2024-08-01-preview'
 @description('List of completion models to be deployed to the OpenAI account.')
 param chatCompletionModels array = [
   {
-    name: 'gpt-4o'
-    version: '2024-08-06'
+    name: 'gpt-4o-mini'
+    version: '2024-07-18'
     skuName: 'GlobalStandard'
     capacity: 25
   }
